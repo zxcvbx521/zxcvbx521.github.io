@@ -1,32 +1,29 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Скачать пустой TXT файл</title>
+    <title>Скачать пустой TXT</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            margin-top: 50px;
-        }
-        a {
-            display: inline-block;
-            margin-top: 20px;
-            padding: 10px 20px;
-            background-color: #007BFF;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-        }
-        a:hover {
-            background-color: #0056b3;
-        }
+        body { font-family: Arial; text-align: center; margin-top: 50px; }
+        button { padding: 10px 20px; background: #007BFF; color: white; border: none; cursor: pointer; }
     </style>
 </head>
 <body>
-    <h1>Скачать пустой текстовый файл</h1>
-    <p>Нажмите на кнопку ниже, чтобы скачать файл <code>empty.txt</code>.</p>
-    <a href="empty.txt" download>Скачать empty.txt</a>
+    <h1>Скачать пустой TXT</h1>
+    <button onclick="downloadEmptyTxt()">Скачать empty.txt</button>
+
+    <script>
+        function downloadEmptyTxt() {
+            const content = ""; // Пустое содержимое
+            const blob = new Blob([content], { type: "text/plain" });
+            const url = URL.createObjectURL(blob);
+            
+            const a = document.createElement("a");
+            a.href = url;
+            a.download = "empty.txt";
+            a.click();
+            
+            URL.revokeObjectURL(url);
+        }
+    </script>
 </body>
 </html>
